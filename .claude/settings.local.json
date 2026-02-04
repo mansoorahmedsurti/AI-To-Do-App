@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git remote add origin https://github.com/mansoorahmedsurti/AI-To-Do-App.git)",
+      "Bash(git add .)"
+    ]
+  }
+}
