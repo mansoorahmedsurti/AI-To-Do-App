@@ -1,0 +1,13 @@
+{
+  "name": "ai-todo-app-backend",
+  "version": "1.0.0",
+  "description": "Backend API for the AI To-Do App",
+  "scripts": {
+    "start": "python start_server.py",
+    "dev": "python start_server.py",
+    "install": "pip install -r requirements.txt"
+  },
+  "keywords": ["fastapi", "todo", "api", "python"],
+  "author": "AI To-Do App",
+  "license": "MIT"
+}

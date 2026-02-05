@@ -2,7 +2,17 @@
   "permissions": {
     "allow": [
       "Bash(git remote add origin https://github.com/mansoorahmedsurti/AI-To-Do-App.git)",
-      "Bash(git add .)"
+      "Bash(git add .)",
+      "Bash(git commit -m \"Initial commit: AI To-Do App with CLI functionality\n\n- Implement core to-do list functionality\n- Add CLI interface for managing tasks\n- Include models, services, and file utilities\n- Add unit and integration tests\n- Configure project structure and dependencies\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\")",
+      "Bash(yes n)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --import-alias \"@/*\" --use-npm)",
+      "Bash(npm install @better-auth/react @better-auth/client better-auth --registry https://npm.pkg.github.com)",
+      "Bash(npm install @better-auth/react @better-auth/client better-auth)",
+      "Bash(npm install next-auth)",
+      "Bash(pip install -r requirements.txt)",
+      "Bash(npx next dev --port 3001)",
+      "Bash(npm run build)",
+      "Bash(npx next start --port 3000)"
     ]
   }
 }

@@ -30,7 +30,40 @@ venv/
 env/
 ENV/
 .python-version
-.DS_Store
+
+# Node.js/JavaScript/TypeScript
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnp
+.pnp.js
+.next/
+.nuxt/
+.vuepress/dist/
+.cache/
+.static/
+dist/
+build/
+coverage/
+*.tsbuildinfo
+*.prod.config.js
+*.valid.js
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.nano-staged
+
+# Next.js
+.next
+out/
+coverage/
+*.log
+
+# Docker
+.dockerignore
+*.dockerignore
 
 # IDE
 .vscode/
@@ -49,3 +82,8 @@ Thumbs.db
 .env
 .env.local
 .env.backup
+
+# Database
+*.db
+*.db-journal
+todo_app.db
