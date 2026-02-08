@@ -1,5 +1,5 @@
 @echo off
-echo Starting AI To-Do App - Web Era...
+echo Starting AI To-Do App - Phase 2...
 
 REM Start backend server in a separate window
 start cmd /k "cd backend && python start_server.py"

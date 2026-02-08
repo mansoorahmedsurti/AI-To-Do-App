@@ -33,7 +33,7 @@ This is the web version of the AI To-Do App, featuring a modern Next.js frontend
 │   │   └── db/        # Database configuration
 │   ├── main.py        # Main application entry point
 │   └── ...
-└── specs/web-era/     # Web Era specifications and documentation
+└── specs/phase-2/     # Phase 2 specifications and documentation
 ```
 
 ## Running the Application

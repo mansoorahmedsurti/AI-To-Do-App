@@ -4,14 +4,11 @@ from typing import Generator
 import os
 
 # Database URL for PostgreSQL - MUST be provided as environment variable
-# For testing purposes only: Allow SQLite if TESTING environment variable is set
+# NO SQLite fallbacks allowed - app must crash if DATABASE_URL is not set
 if settings.DATABASE_URL:
     engine = create_engine(settings.DATABASE_URL)
-elif os.getenv("TESTING"):
-    # ONLY for testing without Docker - NOT for production
-    engine = create_engine("sqlite:///./test_todo_app.db")
 else:
-    raise ValueError("DATABASE_URL environment variable is required. No SQLite fallback allowed in production.")
+    raise ValueError("DATABASE_URL environment variable is required. No fallbacks allowed.")
 
 
 def get_session() -> Generator[Session, None, None]:

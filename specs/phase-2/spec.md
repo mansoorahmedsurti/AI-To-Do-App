@@ -1,4 +1,4 @@
-# Web Era: AI To-Do App Specification
+# Phase 2: AI To-Do App Specification
 
 ## Overview
 This document specifies the requirements for transforming the existing CLI to-do application into a modern, multi-user web application with persistent storage and authentication.

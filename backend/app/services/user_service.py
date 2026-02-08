@@ -5,6 +5,8 @@ from app.core.auth import hash_password
 
 
 def create_user(*, session: Session, user_create: UserCreate) -> User:
+    # With Better Auth, password hashing might be handled by the auth system
+    # But we still need to hash passwords for direct user creation
     db_user = User.model_validate(
         user_create, update={"password_hash": hash_password(user_create.password)}
     )

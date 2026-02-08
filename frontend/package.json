@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "next": "16.1.6",
-    "next-auth": "^4.24.13",
+    "better-auth": "^0.2.1",
+    "@better-auth/react": "^0.2.1",
     "react": "19.2.3",
     "react-dom": "19.2.3"
   },
