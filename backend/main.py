@@ -2,6 +2,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api import auth, todos
+from app.api.v1 import chat
 from app.db.init_db import create_db_and_tables
 
 
@@ -28,6 +29,7 @@ app.add_middleware(
 # Authentication is handled by Better Auth on the frontend
 app.include_router(auth.router, prefix="/auth", tags=["auth"])
 app.include_router(todos.router, prefix="/api/todos", tags=["todos"])
+app.include_router(chat.router, prefix="/api", tags=["chat"])
 
 @app.get("/")
 def read_root():

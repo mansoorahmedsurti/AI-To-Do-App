@@ -8,3 +8,5 @@ python-multipart==0.0.20
 python-dotenv==1.0.1
 httpx==0.28.1
 psycopg2-binary==2.9.9
+mcp==1.0.0
+cohere==5.12.0

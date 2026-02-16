@@ -3,6 +3,7 @@
 import { useAuth } from "@/context/AuthContext";
 import { useState, useEffect } from "react";
 import { useRouter } from 'next/navigation';
+import Navigation from "@/components/Navigation";
 
 export default function Home() {
   const { user, signIn, signUp, signOut, isLoading } = useAuth();
@@ -43,6 +44,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+      {user && <Navigation />}
       <div className="container mx-auto px-4 py-8">
         <header className="flex justify-center mb-12">
           <h1 className="text-3xl font-bold text-gray-800">AI To-Do App</h1>

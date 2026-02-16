@@ -1,7 +1,12 @@
-from sqlmodel import SQLModel, Field
+from sqlmodel import SQLModel, Field, Relationship
 from datetime import date
-from typing import Optional
+from typing import Optional, List
 import uuid
+
+
+# Forward declaration for relationships
+class User:  # pragma: no cover
+    pass
 
 
 class TodoBase(SQLModel):
@@ -18,6 +23,9 @@ class Todo(TodoBase, table=True):
     id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)
     created_at: Optional[str] = Field(default=None)
     updated_at: Optional[str] = Field(default=None)
+    
+    # Relationships
+    user: "User" = Relationship(back_populates="todos")
 
 
 class TodoCreate(TodoBase):
