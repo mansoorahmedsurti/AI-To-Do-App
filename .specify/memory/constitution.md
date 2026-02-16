@@ -1,48 +1,80 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!-- SYNC IMPACT REPORT
+Version change: 1.0.0 → 2.0.0
+Modified principles: All principles updated for AI-Powered Todo Chatbot project
+Added sections: New architecture requirements section
+Removed sections: None
+Templates requiring updates:
+  - .specify/templates/plan-template.md ✅ updated
+  - .specify/templates/spec-template.md ✅ updated
+  - .specify/templates/tasks-template.md ✅ updated
+  - .specify/templates/phr-template.prompt.md ⚠ pending
+Follow-up TODOs: None
+-->
+
+# AI-Powered Todo Chatbot Constitution
+<!-- AI-powered conversational todo management system -->
 
 ## Core Principles
 
-### I. Library-First
-Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries
+### I. Conversational Interface First
+Every feature must be accessible through natural language interaction; All user interactions designed for chat-based input/output; Natural language processing capabilities integrated throughout the system
 
-### II. CLI Interface
-Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats
+### II. MCP-Server Centric Architecture
+All tools exposed via standardized MCP protocol; Centralized tool server using Official MCP Python SDK; State management through MCP-conformant interfaces
 
-### III. Test-First (NON-NEGOTIABLE)
-TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced
+### III. OpenAI Agent Integration
+Leverage OpenAI Agents SDK for intelligent processing; Agent must consume MCP-exposed tools; Conversation flow orchestrated by AI agent with human oversight
 
-### IV. Integration Testing
-Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas
+### IV. Stateless API Design
+All endpoints must be stateless; Conversation state persisted in database via Conversation and Message tables; No session-based state management in API layer
 
-### V. Mandatory Stack
-Language: Python 3.13+, CLI: Typer, UI: Rich, Testing: Pytest, Persistence: Local JSON
+### V. Full Stack Modern Architecture
+Frontend: Next.js 16+ with OpenAI ChatKit; Backend: FastAPI with PostgreSQL; MCP Server: Python SDK; Authentication: Better Auth integration maintained
 
-### VI. Observability
-Text I/O ensures debuggability; Structured logging required
+### VI. Tool Standardization
+Standardized tool contracts with consistent signatures: user_id, specific parameters; All 5 required tools implemented: add_task, list_tasks, complete_task, delete_task, update_task; Type-safe tool definitions with proper error handling
 
-### [PRINCIPLE_6_NAME]
+### VII. Test-First (NON-NEGOTIABLE)
+TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced; Integration tests cover MCP server, agent communication, and frontend-backend flow
 
+## Technology Requirements
 
-[PRINCIPLE__DESCRIPTION]
+### Frontend Stack
+- Framework: Next.js 16+ (App Router)
+- UI Library: Tailwind CSS
+- Chat Interface: OpenAI ChatKit
+- Authentication: Better Auth client integration
+- State Management: React Context API with proper TypeScript typing
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+### Backend Stack
+- Framework: FastAPI
+- ORM: SQLModel with PostgreSQL
+- Authentication: Better Auth integration
+- MCP Server: Official MCP Python SDK
+- OpenAI Integration: OpenAI Agents SDK
+- Type Safety: Full TypeScript and Python type hint coverage
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### Database Schema
+- User table: Existing from Phase 2 with authentication support
+- Todo table: Existing from Phase 2 with proper relationships maintained
+- Conversation table: Tracks chat sessions with user_id, created_at, updated_at
+- Message table: Stores individual messages with role, content, timestamp, linked to conversation
+- Proper indexing on foreign keys and frequently queried fields
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+### API Design
+- RESTful design for standard endpoints
+- Stateful chat endpoint: POST /api/chat with conversation persistence
+- Proper authentication headers maintained across all endpoints
+- Consistent error response format with appropriate HTTP status codes
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+## Development Workflow
+- Spec-Driven Development: Write spec first → Generate plan → Create tasks → Implement via Claude Code
+- Feature Branch Strategy: Isolate Phase 3 work in dedicated branches
+- Integration Points: Ensure seamless integration between existing Phase 2 and new Phase 3 components
+- Code Quality: Maintain consistent TypeScript and Python code standards
+- Documentation: Inline documentation for MCP tools and API endpoints
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+All changes must comply with this constitution; Amendments require documentation and team approval; Complexity must be justified with clear benefits; Use CLAUDE.md for runtime development guidance; All pull requests must verify constitutional compliance before merging
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
-
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 2.0.0 | **Ratified**: 2026-02-08 | **Last Amended**: 2026-02-08

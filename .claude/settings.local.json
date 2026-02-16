@@ -13,7 +13,8 @@
       "Bash(npx next dev --port 3001)",
       "Bash(npm run build)",
       "Bash(npx next start --port 3000)",
-      "Bash(dir:*)"
+      "Bash(dir:*)",
+      "Bash(pip install psycopg2-binary)"
     ]
   }
 }
