@@ -1,7 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
-import { authClient } from '@/lib/auth';
+import { authClient, Session, AuthResponse } from '@/lib/auth';
 
 interface User {
   id: string;
@@ -26,11 +26,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     // Check if user is already logged in
     const checkSession = async () => {
       try {
-        const session = await authClient.getSession();
-        if (session) {
+        const session = await authClient.session();
+        if (session && 'user' in session && 'session' in session) {
+          const typedSession = session as Session;
           setUser({
-            id: session.session.userId || "unknown",
-            email: session.user.email,
+            id: typedSession.session.userId || "unknown",
+            email: typedSession.user.email,
           });
         }
       } catch (error) {
@@ -45,14 +46,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signIn = async (email: string, password: string) => {
     try {
-      const result = await authClient.signIn({ email, password });
-
-      setUser({
-        id: result.session.userId || "unknown",
-        email: result.user.email,
+      const response = await fetch('/api/auth/sign-in/email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
       });
+      const result = await response.json() as AuthResponse;
 
-      localStorage.setItem('user_email', result.user.email);
+      if (result.data?.session) {
+        setUser({
+          id: result.data.session.userId || "unknown",
+          email: result.data.user.email,
+        });
+        localStorage.setItem('user_email', result.data.user.email);
+      }
     } catch (error) {
       console.error('Sign in error:', error);
       throw error;
@@ -61,14 +68,24 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signUp = async (email: string, password: string) => {
     try {
-      const result = await authClient.signUp({ email, password });
-
-      setUser({
-        id: result.session.userId || "unknown",
-        email: result.user.email,
+      const response = await fetch('/api/auth/sign-up/email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          email, 
+          password,
+          name: email.split('@')[0]
+        }),
       });
+      const result = await response.json() as AuthResponse;
 
-      localStorage.setItem('user_email', result.user.email);
+      if (result.data?.session) {
+        setUser({
+          id: result.data.session.userId || "unknown",
+          email: result.data.user.email,
+        });
+        localStorage.setItem('user_email', result.data.user.email);
+      }
     } catch (error) {
       console.error('Sign up error:', error);
       throw error;
@@ -77,7 +94,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signOut = async () => {
     try {
-      await authClient.signOut();
+      await fetch('/api/auth/sign-out', { method: 'POST' });
       setUser(null);
     } catch (error) {
       console.error('Sign out error:', error);
